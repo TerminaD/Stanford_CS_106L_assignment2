@@ -2,3 +2,10 @@ vcpkg/
 build/
 build_and_run.sh
 CMakeLists.txt
+.vscode/
+test.cpp
+test
+test.dSYM
+test2.cpp
+test2
+test2.dSYM

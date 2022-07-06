@@ -11,7 +11,7 @@ using std::vector;          using std::string;
 using std::unordered_set;   using std::cout;
 using std::endl;
 
-const string pre = "<a href=\"wiki/";
+const string pre = "<a href=\"/wiki/";
 const string suf = "\">";
 
 /*********************************************
