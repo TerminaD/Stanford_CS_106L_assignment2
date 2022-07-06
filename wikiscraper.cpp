@@ -20,6 +20,7 @@ bool valid_wikilink(const string& link)
 
 unordered_set<string> findWikiLinks(const string& inp)
 {
+    cout << "Parsing pulled page..." << endl;
 	static const string delim = "href=\"/wiki/";
 	unordered_set<string> ret;
 
@@ -53,6 +54,7 @@ unordered_set<string> findWikiLinks(const string& inp)
  */
 unordered_set<string> WikiScraper::getLinkSet(const string &page_name)
 {
+    cout << "Getting all links for " << page_name << "..." << endl;
     if (linkset_cache.find(page_name) == linkset_cache.end())
     {
         auto links = findWikiLinks(getPageSource(page_name));
@@ -68,6 +70,7 @@ WikiScraper::WikiScraper()
 
 string createPageUrl(const string &page_name)
 {
+    cout << "Getting URL for " << page_name << "..." << endl;
     return "https://en.wikipedia.org/wiki/" + page_name;
 }
 
@@ -92,6 +95,7 @@ void notFoundError(const string &msg, const string &page_name, const string &url
 string WikiScraper::getPageSource(const string &page_name)
 {
     const static string not_found = "Wikipedia does not have an article with this exact name.";
+    cout << "Pulling contents of " << page_name << "..." << endl;
     if (page_cache.find(page_name) == page_cache.end())
     {
         string url = createPageUrl(page_name);
@@ -100,6 +104,7 @@ string WikiScraper::getPageSource(const string &page_name)
         // returns the content of the webpage. when this assignment was on QtCreator,
         // we had a whole separate assignment for making sure an alternate Internet Library
         // (not cpr) was working on your personal pc. look how simple it is now!
+        cout << "Calling curl... Please don't be a dick!!!" << endl;
         cpr::Response r = cpr::Get(cpr::Url{url});
 
         string ret = r.text;

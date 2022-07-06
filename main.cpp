@@ -22,6 +22,7 @@ using std::vector;
 
 int numCommonLinks(const unordered_set<string> &curr_set, const unordered_set<string> &target_set)
 {
+    cout << "Counting common links..." << endl;
     int commonLinkNum = 0;
     for (const string &link : curr_set)
     {
@@ -33,6 +34,7 @@ int numCommonLinks(const unordered_set<string> &curr_set, const unordered_set<st
 
 vector<string> findWikiLadder(const string &start_page, const string &end_page)
 {
+    cout << "Finding ladder between " << start_page << " and " << end_page << "...";
     WikiScraper w;
 
     /* Create alias for container backing priority_queue */
@@ -43,6 +45,7 @@ vector<string> findWikiLadder(const string &start_page, const string &end_page)
     {
         const string page1 = left.back();
         const string page2 = right.back();
+        cout << "Comparing " << page1 << " with " << page2 << "...";
         const int num1 = numCommonLinks(w.getLinkSet(page1), target_set);
         const int num2 = numCommonLinks(w.getLinkSet(page2), target_set);
         return num1 < num2;
@@ -57,6 +60,7 @@ vector<string> findWikiLadder(const string &start_page, const string &end_page)
         vector<string> curr_path = queue.top();
         queue.pop();
         string curr = curr_path.back();
+        cout << "Looking at " << curr << "...";
 
         auto link_set = w.getLinkSet(curr);
 
@@ -113,6 +117,7 @@ int main()
     int numPairs;
     // parse the first line as the number of tokens
     in >> numPairs;
+    cout << "Parsed number";
 
     // loop through each line, parsing out page names and calling findWikiLadder
     string startPage, endPage;
@@ -120,6 +125,7 @@ int main()
     {
         // parse the start and end page from each line
         in >> startPage >> endPage;
+        cout << "Parsed pair " << i << endl;
         outputLadders.push_back(findWikiLadder(startPage, endPage));
     }
 
@@ -127,6 +133,7 @@ int main()
      * Print out all ladders in outputLadders.
      * We've already implemented this for you!
      */
+    cout << "Now outputting...";
     for (auto &ladder : outputLadders)
     {
         if (ladder.empty())
