@@ -104,8 +104,9 @@ string WikiScraper::getPageSource(const string &page_name)
         // returns the content of the webpage. when this assignment was on QtCreator,
         // we had a whole separate assignment for making sure an alternate Internet Library
         // (not cpr) was working on your personal pc. look how simple it is now!
-        cout << "Calling curl... Please don't be a dick!!!" << endl;
+        cout << "Calling cpr..." << endl;
         cpr::Response r = cpr::Get(cpr::Url{url});
+        cout << "Got a cpr response!" << endl;
 
         string ret = r.text;
         if (r.status_code != 200)

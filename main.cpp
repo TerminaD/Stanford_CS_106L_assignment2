@@ -34,7 +34,7 @@ int numCommonLinks(const unordered_set<string> &curr_set, const unordered_set<st
 
 vector<string> findWikiLadder(const string &start_page, const string &end_page)
 {
-    cout << "Finding ladder between " << start_page << " and " << end_page << "...";
+    cout << "Finding ladder between " << start_page << " and " << end_page << "..." << endl;
     WikiScraper w;
 
     /* Create alias for container backing priority_queue */
@@ -43,11 +43,9 @@ vector<string> findWikiLadder(const string &start_page, const string &end_page)
 
     auto cmp_fn = [&w, &target_set](const vector<string> &left, const vector<string> &right)
     {
-        const string page1 = left.back();
-        const string page2 = right.back();
-        cout << "Comparing " << page1 << " with " << page2 << "...";
-        const int num1 = numCommonLinks(w.getLinkSet(page1), target_set);
-        const int num2 = numCommonLinks(w.getLinkSet(page2), target_set);
+        cout << "Comparing " << left.back() << " with " << right.back() << "...";
+        const int num1 = numCommonLinks(w.getLinkSet(left.back()), target_set);
+        const int num2 = numCommonLinks(w.getLinkSet(right.back()), target_set);
         return num1 < num2;
     };
 
@@ -66,7 +64,7 @@ vector<string> findWikiLadder(const string &start_page, const string &end_page)
 
         /*
          * Early check for whether we have found a ladder.
-         * By doing this check up here we spead up the code because
+         * By doing this check up here we speed up the code because
          * we don't enqueue every link on this page if the target page
          * is in the links of this set.
          */
@@ -117,7 +115,7 @@ int main()
     int numPairs;
     // parse the first line as the number of tokens
     in >> numPairs;
-    cout << "Parsed number";
+    cout << "Parsed number" << endl;
 
     // loop through each line, parsing out page names and calling findWikiLadder
     string startPage, endPage;
